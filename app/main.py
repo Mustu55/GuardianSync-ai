@@ -41,6 +41,14 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
+@app.get("/")
+async def root():
+    return {
+        "service": "GuardianSync AI Engine",
+        "status": "ok",
+        "health": "/health",
+    }
+
 @app.middleware("http")
 async def log_requests(request: Request, call_next):
     try:
